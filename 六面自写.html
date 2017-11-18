@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+       *{
+       	padding: 0;
+       	margin: 0;
+       }
+
+
+       .box{
+       	width: 300px;
+       	height: 300px;
+              position: relative;
+              margin: 100px auto 0;
+              transform-style: preserve-3d;
+               transform: rotateX(-30deg) rotateY(-30deg);
+              animation: box 6s linear forwards infinite  alternate;
+       }
+         @keyframes box{
+             form{
+                transform: rotateX(30deg) rotateY(30deg);
+             }
+             to{
+                    
+             transform: rotateX(180deg) rotateY(180deg);
+            
+             }
+       }
+       .box>div{
+       	width: 100%;
+       	height: 100%;
+       	position: absolute;
+       	left: 0;
+       	top: 0;
+            
+
+       }
+       .box>div li{
+              float: left;
+              width: 100px;
+              height: 100px;
+              border: 1px solid #ccc;
+              box-sizing:border-box;
+              list-style: none;
+              position: relative;
+              top: 0;
+              left: 0;
+              opacity: 0.6;
+          
+       }
+   
+       .s{
+       	transform: rotateX(90deg) translateZ(150px);
+       }
+       .x{
+       	transform: rotateX(90deg) translateZ(-150px);
+       }
+       .z{
+              transform: rotateY(90deg) translateZ(-150px);
+       }
+       .y{
+              transform: rotateY(90deg) translateZ(150px);
+       }
+       .q{
+              transform: translateZ(150px);
+       }
+       .h{
+              transform: translateZ(-150px);
+       }
+
+       
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="s"></div>
+		<div class="x"></div>
+		<div class="z"></div>
+		<div class="y"></div>
+		<div class="q"></div>
+		<div class="h"></div>
+	</div>
+       <script src="jquery.js"></script>
+       <script>
+              
+       //设一个颜色数组
+       var arrcolor = ['red','pink','blue','yellow','deeppink','green'];
+       //给每个面添加颜色
+       $('.box>div').each(function(index,item){
+         // $(item).css('background',arrcolor[i]);
+         //给每个面循环添加ul li
+         var ul = $('<ul></ul>');
+         for (var i =8; i >= 0; i--) {
+            var li = $('<li></li>');
+            li.css('background',arrcolor[index]);
+       
+               ul.append(li);
+         }
+          $(this).append(ul);
+       })
+
+          // 生成一个随机数数组
+        var pos =[];
+       for (var i = 0; i < 55; i++) {
+        pos.push(parseInt(Math.random()*(380-(-380))-380));
+       }
+       // console.log(pos);
+       $('li').each(function(i,item){
+          $(item).css({'left':pos[i],'top':pos[i+1]});
+          $(item).animate({'left':0,'top':0},3000);
+          // console.log(item);
+       })
+       //  $('li').each(function(i,item){
+
+       //   $(item).animate({'left':0,'top':0},3000);
+       
+       // })
+
+       </script>
+</body>
+</html>
